@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>손편지 디자인</title>
+<style>
+  body {
+    background: #f7f1e3;
+    font-family: 'Cursive', sans-serif;
+  }
+
+  .letter-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    background-image: url('paper-texture.png'); /* Add a paper texture background */
+    
+  }
+
+  .letter-image {
+  width: 100%;
+  max-width: 300px; /* 최대 너비 설정 */
+  height: auto;
+  border-radius: 8px;
+  display: block; /* 블록 요소로 만들기 */
+  margin: auto; /* 좌우 마진을 자동으로 설정하여 중앙 정렬 */
+  margin-bottom: 20px; /* 하단 여백 설정 */
+  }
+
+  .letter-signature {
+    text-align: right;
+    margin-top: 40px;
+    font-size: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="letter-container">
+  <img src="{{ url_for('uploaded_file', filename=image_path) }}" alt="Uploaded Image" class="letter-image">
+  <div class="letter-content">
+    <!-- 사랑하는 김순자 할머니께,<br>
+        송호준이가 쓰는 편지입니다. 할머니, 창밖에 핀 꽃들을 보며 할머니의 따뜻한 웃음이 떠올랐어요. 매일 그리운 마음, 할머니께 전하고 싶은 사랑의 말씀이 이 가슴에 가득합니다.<br><br>
+        
+        바쁜 일상 속에서도 할머니의 목소리가 얼마나 듣고 싶은지 모르세요. 저희 집 식탁에 할머니가 앉으셔서 웃으시던 모습, 맛있는 음식을 나누던 그 시간들이 그립습니다.<br><br>
+        
+        할머니, 오늘도 사랑하고, 보고 싶은 마음 가득 안고 삽니다. 언제나 건강하시길 기도하며, 곧 만나 뵙고 싶습니다. -->
+        {{ generated_text }}
+      </div>
+  <div class="letter-signature">
+    {{ sender_name }}
+  </div>
+</div>
+
+</body>
+</html>

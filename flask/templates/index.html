@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마중</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f7eedc; /* 황갈색 테마 배경 */
+  }
+  
+  .logo {
+    display: block;
+    margin: 0 auto 5px auto; /* 로고 이미지의 위치 */
+    width: 300px; /* 로고 크기 */
+    height: auto;
+    margin-bottom: 20px; /* 하단 여백 설정 */
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #8c704b; /* 라벨 색상 */
+  }
+
+  .toggle-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .toggle-button {
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px; /* 둥근 모서리 */
+  }
+
+  .toggle-button.active, .toggle-button:hover {
+    background: #d9b382; /* 활성화 및 호버 색상 */
+    color: white;
+  }
+
+  .form-group input[type="file"] {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px; /* 둥근 모서리 */
+  }
+
+  .checkbox-group label {
+    display: block;
+    margin: 5px 0; /* 체크박스와 라벨 간격 조정 */
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  .submit-button {
+    padding: 10px 15px;
+    background: #8c704b; /* 버튼 색상 */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* 둥근 모서리 */
+    display: block;
+    width: 100%;
+  }
+
+  .submit-button:hover {
+    background: #734c34; /* 호버 색상 */
+  }
+</style>
+</head>
+<body>
+
+<img src="../static/img/logo2.png" alt="로고 이미지" class="logo"> <!-- 로고 이미지 추가 -->
+  <form id="letterForm" action="/submit" method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label>누구에게 보내시나요?</label>
+    <div class="toggle-group">
+      <div class="toggle-button" data-value="할아버지">할아버지</div>
+      <div class="toggle-button" data-value="할머니">할머니</div>
+      <div class="toggle-button" data-value="아버지">아버지</div>
+      <div class="toggle-button" data-value="어머니">어머니</div>
+      <input type="hidden" name="recipient" id="recipientInput" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>연세가 어떻게 되시나요?</label>
+    <div class="toggle-group">
+      <div class="toggle-button" data-value="50대">50대</div>
+      <div class="toggle-button" data-value="60대">60대</div>
+      <div class="toggle-button" data-value="70대 이상">70대 이상</div>
+      <input type="hidden" name="age_group" id="ageGroupInput" value="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>받는 분의 이름은 무엇인가요?</label>
+    <input type="text" name="recipient_name" required>
+  </div>
+  <div class="form-group">
+    <label>보내시는 분의 이름은 무엇인가요?</label>
+    <input type="text" name="sender_name" required>
+  </div>
+  <div class="form-group">
+    <label>편지를 보내실 분께 보내실 사진 올려주세요!</label>
+    <input type="file" name="image" accept="image/*">
+  </div>
+
+  <div class="form-group">
+    <label>꼭 포함됐으면 하는 키워드 입력</label>
+    <input type="text" name="keywords">
+  </div>
+
+  <div class="form-group">
+    <label>편지 온도:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="letter_style" value="진정성">진정성</label>
+      <label><input type="checkbox" name="letter_style" value="귀엽게">귀엽게</label>
+      <label><input type="checkbox" name="letter_style" value="친근하게">친근하게</label>
+      <label><input type="checkbox" name="letter_style" value="사투리">사투리</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="submit-button">편지 보내기</button>
+  </div>
+
+</form>
+
+<script>
+  // 토글 버튼 활성화 스크립트
+  document.querySelectorAll('.toggle-button').forEach(button => {
+    button.addEventListener('click', function() {
+      let group = this.parentElement;
+      group.querySelectorAll('.toggle-button').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      let input = group.querySelector('input[type="hidden"]');
+      input.value = this.getAttribute('data-value');
+    });
+  });
+
+  // 폼 제출 처리 스크립트
+  document.getElementById('letterForm').addEventListener('submit', function(event) {
+    // 폼 데이터 검증을 추가할 수 있습니다
+  });
+</script>
+
+</body>
+</html>
